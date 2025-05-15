@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eKimina System - Smart Financial Community</title>
+    <style>
+        /* GENERAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        /* UTILITIES */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #356cf6;
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2a56d5;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #356cf6;
+            border: 2px solid #356cf6;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f5f8ff;
+            transform: translateY(-2px);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* HEADER STYLES */
+        header {
+            padding: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .logo span {
+            color: #356cf6;
+            margin-left: 5px;
+        }
+        
+        .logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .            nav-links a:hover {
+            color: #356cf6;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #f9faff 0%, #ffffff 100%);
+            display: flex;
+            align-items: center;
+            padding-top: 70px;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: #1e293b;
+        }
+        
+        .hero-text h1 span {
+            color: #356cf6;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 32px;
+            max-width: 550px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* FEATURES SECTION */
+        .features {
+            padding: 120px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* PARTNERS SECTION */
+        .partners {
+            padding: 120px 0;
+            background-color: #f0f5ff;
+        }
+        
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .partner-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .partner-card-featured {
+            border: 2px solid #356cf6;
+        }
+        
+        .featured-tag {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #356cf6;
+            color: white;
+            padding: 5px 40px;
+            font-size: 14px;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+        
+        .partner-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .partner-icon {
+            font-size: 48px;
+            color: #356cf6;
+            margin-bottom: 15px;
+        }
+        
+        .partner-logo h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .partner-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .partner-content p {
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        
+        .partner-benefits {
+            margin-top: auto;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .benefit i {
+            color: #356cf6;
+            margin-right: 10px;
+        }
+        
+        .benefit span {
+            color: #4b5563;
+            font-weight: 500;
+        }
+        
+        /* FEATURES GRID */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f5ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        
+        .feature-icon i {
+            font-size: 24px;
+            color: #356cf6;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1e293b;
+        }
+        
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+        
+        /* HOW IT WORKS SECTION */
+        .how-it-works {
+            padding: 120px 0;
+            background-color: #f9faff;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 15%;
+            right: 15%;
+            height: 3px;
+            background-color: #e0e7ff;
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 230px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: #356cf6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        .step-number::after {
+            content: '';
+            position: absolute;
+            width: 76px;
+            height: 76px;
+            border: 2px dashed #c7d2fe;
+            border-radius: 50%;
+            top: -10px;
+            left: -10px;
+        }
+        
+        .step h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .step p {
+            color: #64748b;
+            text-align: center;
+            font-size: 15px;
+        }
+        
+        /* TESTIMONIALS SECTION */
+        .testimonials {
+            padding: 120px 0;
+            background-color: white;
+        }
+        
+        .testimonials-container {
+            margin-top: 60px;
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding-bottom: 40px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        
+        .testimonials-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .testimonial-card {
+            min-width: 350px;
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            scroll-snap-align: start;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 24px;
+            font-style: italic;
+            color: #4b5563;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-weight: 600;
+            color: #4f46e5;
+        }
+        
+        .author-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        /* CTA SECTION */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(90deg, #356cf6 0%, #4f46e5 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background-color: white;
+            color: #356cf6;
+            padding: 14px 32px;
+            font-weight: 600;
+            border-radius: 30px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* FOOTER */
+        footer {
+            background-color: #1e293b;
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+        
+        .footer-about p {
+            opacity: 0.7;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: #356cf6;
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 60px;
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        /* RESPONSIVE STYLES */
+        @media (max-width: 1024px) {
+            .hero-text h1 {
+                font-size: 44px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .auth-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .hero-text p {
+                margin: 0 auto 32px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 60px;
+            }
+            
+            .steps::before {
+                left: 50%;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                height: calc(100% - 60px);
+                transform: translateX(-50%);
+            }
+            
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .cta h2 {
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card {
+                padding: 24px;
+            }
+            
+            .testimonial-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <!-- <img src="/api/placeholder/80/80" alt="eKimina Logo"> -->
+                <span>eKimina</span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#partners">Partners</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-secondary">Sign In</a>
+                <a href="#" class="btn btn-primary">Create Account</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Smart and Secure <span>Community Savings</span></h1>
+                <p>eKimina is your secure platform for community-based savings and loans. Contribute, withdraw, and access loans with ease in a transparent environment built for your financial growth.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                    <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://media.istockphoto.com/id/1444187672/photo/happy-phone-and-black-woman-reading-a-blog-on-an-internet-website-in-a-studio-with-mockup.jpg?s=612x612&w=0&k=20&c=7-dRVeTnlq-WP1u4ZhPli1DbPd4UUu5hF8NMgP8RJDQ=" alt="eKimina Dashboard Illustration">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Tools for Community Finance</h2>
+                <p>eKimina provides everything you need to manage community savings and loans transparently and securely.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3>Effortless Contributions</h3>
+                    <p>Make regular contributions to your community savings group with just a few clicks. Track your contributions history and growth over time.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-transfer"></i>
+                    </div>
+                    <h3>Quick Loan Access</h3>
+                    <p>Request and receive loans from your community fund when you need it most. Simple application process with transparent terms.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Financial Analytics</h3>
+                    <p>View detailed reports and analytics of your group's financial activities. Make informed decisions with real-time data.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3>Secure Transactions</h3>
+                    <p>All your financial transactions are protected with bank-level security. Your money and data remain safe at all times.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-people-group"></i>
+                    </div>
+                    <h3>Community Management</h3>
+                    <p>Easily manage members, track contributions, and oversee loan distribution with our intuitive dashboard.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access your eKimina account from anywhere, at any time. Our platform works seamlessly on all devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How eKimina Works</h2>
+                <p>Getting started with eKimina is simple. Follow these easy steps to begin your journey toward community-based financial empowerment.</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Create Your Account</h3>
+                    <p>Sign up and complete your profile to join the community.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Join or Create a Group</h3>
+                    <p>Connect with an existing group or start your own savings community.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Contributing</h3>
+                    <p>Make regular contributions to build your community fund.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Access Benefits</h3>
+                    <p>Request loans, track savings, and grow your financial health.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Users Say</h2>
+                <p>Join thousands of satisfied users who have transformed their community savings experience with eKimina.</p>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "eKimina has transformed how our community manages our savings. The transparency and ease of use have increased trust among members. Now we can focus on growing our wealth together instead of worrying about record-keeping."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MK</div>
+                        <div class="author-info">
+                            <h4>Marie Kahindo</h4>
+                            <p>Group Leader, Kigali</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Getting a loan through our community group used to take weeks. With eKimina, I applied and received approval within days. The platform made the entire process transparent for everyone involved."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JN</div>
+                        <div class="author-info">
+                            <h4>Jean Ndayishimiye</h4>
+                            <p>Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "As a treasurer for our association, eKimina has saved me countless hours of paperwork. The automated reports and tracking tools give our members confidence that their money is being managed properly."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CM</div>
+                        <div class="author-info">
+                            <h4>Claire Murekatete</h4>
+                            <p>Association Treasurer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The analytics features help us make better decisions about our community fund. We can now see patterns in contributions and loan requests that were invisible before."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PK</div>
+                        <div class="author-info">
+                            <h4>Patrick Kalisa</h4>
+                            <p>Community Coordinator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Trusted Partners</h2>
+                <p>We collaborate with top institutions to provide you with the best financial services and support.</p>
+            </div>
+            
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <!-- <i class="fas fa-landmark partner-icon"></i> -->
+
+                        <img src="https://excisestamps.rra.gov.rw/images/RRA_Logo_home.png"  altd="Rwanda Revenue Authority logo"
+                        <h3>Rwanda Revenue Authority</h3>
+                    </div>
+                    <div class="partner-content">
+                        <p>Official partnership with Rwanda Revenue Authority (RRA) ensures all financial transactions comply with national regulations and tax requirements.</p>
+                        <div class="partner-benefits">
+                            <div class="benefit">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Tax compliance guidance</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Streamlined reporting</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Enhanced credibility</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="partner-card partner-card-featured">
+                    <div class="featured-tag">Featured Partner</div>
+                    <div class="partner-logo">
+                        <i class="fas fa-building-columns partner-icon"></i>
+                        <h3>Bank of Kigali</h3>
+                    </div>
+                    <div class="partner-content">
+                        <p>Our partnership with Bank of Kigali provides secure banking infrastructure for all community savings groups on the eKimina platform.</p>
+                        <div class="partner-benefits">
+                            <div class="benefit">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Secure transaction processing</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Preferential interest rates</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Direct deposit integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <i class="fas fa-money-bill-trend-up partner-icon"></i>
+                        <h3>Rwanda Finance</h3>
+                    </div>
+                    <div class="partner-content">
+                        <p>Strategic collaboration with Rwanda Finance helps eKimina users access additional financial resources and educational materials.</p>
+                        <div class="partner-benefits">
+                            <div class="benefit">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Financial literacy programs</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Business development support</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Investment opportunities</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to transform your community savings?</h2>
+            <p>Join thousands of users already managing their community finances with eKimina. Get started today and see the difference!</p>
+            <a href="#" class="cta-button">Create Your Account</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="/api/placeholder/80/80" a
+                        lt="eKimina Logo">
+                        eKimina
+                    </div>
+                    <p>eKimina is a secure platform for community-based savings and loans, providing transparency and ease of use for all members.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Data Protection</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 eKimina. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Testimonials slider (auto-scroll)
+        const testimonialContainer = document.querySelector('.testimonials-container');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        let currentIndex = 0;
+        
+        if (testimonialCards.length > 1) {
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % testimonialCards.length;
+                testimonialContainer.scrollTo({
+                    left: testimonialCards[currentIndex].offsetLeft,
+                    behavior: 'smooth'
+                });
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
